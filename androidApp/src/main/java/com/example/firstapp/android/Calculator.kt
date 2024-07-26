@@ -1,5 +1,5 @@
 package com.example.firstapp.android
-
+// test comment
 import MyColor
 import android.os.Bundle
 import android.util.Log
