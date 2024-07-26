@@ -146,6 +146,7 @@ fun button(rowScope: RowScope, color: Color, text: String) {
                     sky.value = ""
                     firstvalue = 0.0
                     secondvalue = 0.0
+                    sign = ""
 
                 } else if (text == "⇦") {
                     try {
@@ -155,7 +156,7 @@ fun button(rowScope: RowScope, color: Color, text: String) {
                         Log.e("===cdmi===", "button:${e.message}")
                     }
                 } else if (text == "0" || text == "00") {
-                    if (sky.value == "" || sky.value.length > 1) {
+                    if (sky.value == "" || sky.value.length >= 1) {
                         sky.value += "0"
                     }
                 } else if (text == ".") {
@@ -166,7 +167,7 @@ fun button(rowScope: RowScope, color: Color, text: String) {
                     if (!sky.value.contains(".")) {
                         sky.value += "."
                     }
-                } else if (text == "+" || text == "-" || text == "x" || text == "/") {
+                } else if (text == "+" || text == "-" || text == "x" || text == "/" || text == "%" ) {
                     if (sign == "+") {
                         firstvalue += sky.value.toDouble()
                     } else if (sign == "-") {
@@ -175,7 +176,8 @@ fun button(rowScope: RowScope, color: Color, text: String) {
                         firstvalue *= sky.value.toDouble()
                     } else if (sign == "/") {
                         firstvalue /= sky.value.toDouble()
-                    } else {
+                    }
+                    else {
                         firstvalue = sky.value.toDouble()
                     }
                     sky.value = ""
@@ -188,14 +190,19 @@ fun button(rowScope: RowScope, color: Color, text: String) {
                         ans = firstvalue + secondvalue
                     } else if (sign == "-") {
                         ans = firstvalue - secondvalue
-                    } else if (sign == "x") {
+                    } else if(sign == "x"){
                         ans = firstvalue * secondvalue
-                    } else if (sign == "/") {
+                    } else if(sign == "/"){
                         ans = firstvalue / secondvalue
                     }
-
                     sky.value = ans.toString()
-                } else {
+                }
+                else if(sign == "%")
+                {
+
+                }
+                else
+                 {
                     sky.value += text
                 }
             },
